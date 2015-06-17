@@ -1,0 +1,35 @@
+main: ct.ChatManagerPlus.Main
+version: 1.0.4
+name: ChatManagerPlus
+author: CyranoTrinity
+
+commands:
+    chatmanagerplus:
+        description: ChatManagerPlus commands
+        aliases: [cmp]
+    globalmute:
+        description: Mute global chat
+    globalunmute:
+        description: Unmute global chat
+    clearchat:
+        description: Clear chat
+    mute:
+        description: Mute player
+    unmute:
+        description: Unmute player
+permissions:
+    ChatManagerPlus.*:
+        description: Gives access to all ChatManagerPlus commands
+        children:
+            ChatManagerPlus.globalchat: true
+            ChatManagerPlus.clearchat: true
+            ChatManagerPlus.mute: true
+    ChatManagerPlus.globalchat:
+        description: Disable/Enable global chat
+        default: false
+    ChatManagerPlus.clearchat:
+        description: Clear chat
+        default: false
+    ChatManagerPlus.mute:
+        description: Mute player or all
+        default: false
