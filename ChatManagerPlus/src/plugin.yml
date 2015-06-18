@@ -1,5 +1,5 @@
 main: ct.ChatManagerPlus.Main
-version: 1.0.4
+version: 1.0.7
 name: ChatManagerPlus
 author: CyranoTrinity
 
@@ -17,6 +17,9 @@ commands:
         description: Mute player
     unmute:
         description: Unmute player
+    staffchat:
+        description: Chat for Staff
+        aliases: [sc]
 permissions:
     ChatManagerPlus.*:
         description: Gives access to all ChatManagerPlus commands
@@ -24,6 +27,7 @@ permissions:
             ChatManagerPlus.globalchat: true
             ChatManagerPlus.clearchat: true
             ChatManagerPlus.mute: true
+            ChatManagerPlus.staffchat: true
     ChatManagerPlus.globalchat:
         description: Disable/Enable global chat
         default: false
@@ -32,4 +36,7 @@ permissions:
         default: false
     ChatManagerPlus.mute:
         description: Mute player or all
+        default: false
+    ChatManagerPlus.staffchat:
+        description: Staff Chat
         default: false

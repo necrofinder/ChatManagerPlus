@@ -19,6 +19,7 @@ public class ClearChat implements CommandExecutor {
 		
 		if(!(sender instanceof Player)) {
 			sender.sendMessage("[ChatManagerPlus] Only players can do those commands!");
+			return true;
 		}
 		
 		Player player = (Player) sender;

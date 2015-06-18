@@ -30,6 +30,7 @@ public class Mute implements CommandExecutor, Listener {
 		
 		if(!(sender instanceof Player)) {
 			sender.sendMessage("[ChatManagerPlus] Only players can do those commands!");
+			return true;
 		}
 		
 		Player player = (Player) sender;
@@ -127,7 +128,11 @@ public class Mute implements CommandExecutor, Listener {
 		Player player = (Player) event.getPlayer();
 		String uuid = player.getUniqueId().toString();
 		
-		if (mutedplayers.contains(uuid)) {
+		if (StaffChat.staffchat.contains(uuid)) {
+			return;
+		}
+		
+		else if (mutedplayers.contains(uuid)) {
 			player.sendMessage(prefix + ChatColor.GOLD + "You are currently " + ChatColor.RED + "muted!");
 			event.setCancelled(true);
 		}

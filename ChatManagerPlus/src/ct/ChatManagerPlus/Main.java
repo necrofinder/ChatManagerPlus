@@ -16,11 +16,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 import ct.ChatManagerPlus.Commands.ClearChat;
 import ct.ChatManagerPlus.Commands.GlobalChat;
 import ct.ChatManagerPlus.Commands.Mute;
+import ct.ChatManagerPlus.Commands.StaffChat;
 
 public class Main extends JavaPlugin {
 	
 	PluginDescriptionFile pdf = this.getDescription();
 	public static String prefix;
+	public static String scprefix;
 	
 	public static File mutedplayersYml;
 	FileConfiguration mpConfig;
@@ -28,6 +30,7 @@ public class Main extends JavaPlugin {
 	public void onEnable() {
 		
 		prefix = ChatColor.translateAlternateColorCodes('&', getConfig().getString("ChatManagerPlus.prefix"));
+		scprefix = ChatColor.translateAlternateColorCodes('&', getConfig().getString("ChatManagerPlus.scprefix"));
 		mutedplayersYml = new File(getDataFolder() + "/MutedPlayers.yml");
 		
 		getServer().getLogger().info("[ChatManagerPlus] Plugin enabled!");
@@ -40,6 +43,7 @@ public class Main extends JavaPlugin {
 		PluginManager pm = getServer().getPluginManager();
 		pm.registerEvents(new GlobalChat(), this);
 		pm.registerEvents(new Mute(),this);
+		pm.registerEvents(new StaffChat(), this);
 		
 		new ClearChat();
 		getCommand("clearchat").setExecutor(new ClearChat());
@@ -51,6 +55,9 @@ public class Main extends JavaPlugin {
 		new Mute();
 		getCommand("mute").setExecutor(new Mute());
 		getCommand("unmute").setExecutor(new Mute());
+		
+		new StaffChat();
+		getCommand("staffchat").setExecutor(new StaffChat());
 	}
 
 	public void onDisable() {
@@ -66,6 +73,7 @@ public class Main extends JavaPlugin {
 		
 		if(!(sender instanceof Player)) {
 			sender.sendMessage("[ChatManagerPlus] Only players can do those commands!");
+			return true;
 		}
 		
 		Player player = (Player) sender;
