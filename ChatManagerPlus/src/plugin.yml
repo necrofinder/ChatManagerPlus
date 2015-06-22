@@ -1,5 +1,5 @@
 main: ct.ChatManagerPlus.Main
-version: 1.0.7
+version: 1.1.2
 name: ChatManagerPlus
 author: CyranoTrinity
 
@@ -7,10 +7,10 @@ commands:
     chatmanagerplus:
         description: ChatManagerPlus commands
         aliases: [cmp]
-    globalmute:
-        description: Mute global chat
-    globalunmute:
-        description: Unmute global chat
+    lockchat:
+        description: Lock global chat
+    unlockchat:
+        description: Unlock global chat
     clearchat:
         description: Clear chat
     mute:
@@ -20,15 +20,22 @@ commands:
     staffchat:
         description: Chat for Staff
         aliases: [sc]
+    cbroadcast:
+        description: Broadcast
+        aliases: [cbc]
+    chatcooldown:
+        description: Chat Cooldown
 permissions:
     ChatManagerPlus.*:
         description: Gives access to all ChatManagerPlus commands
         children:
-            ChatManagerPlus.globalchat: true
+            ChatManagerPlus.lockchat: true
             ChatManagerPlus.clearchat: true
             ChatManagerPlus.mute: true
             ChatManagerPlus.staffchat: true
-    ChatManagerPlus.globalchat:
+            ChatManagerPlus.cooldownchat: true
+            ChatManagerPlus.broadcast: true
+    ChatManagerPlus.lockchat:
         description: Disable/Enable global chat
         default: false
     ChatManagerPlus.clearchat:
@@ -39,4 +46,10 @@ permissions:
         default: false
     ChatManagerPlus.staffchat:
         description: Staff Chat
+        default: false
+    ChatManagerPlus.cooldownchat:
+        description: Chat cooldown
+        default: false
+    ChatManagerPlus.broadcast:
+        description: Broadcast
         default: false

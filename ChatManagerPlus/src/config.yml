@@ -1,3 +1,32 @@
 ChatManagerPlus:
     prefix: "&3[&2CMP&3] "
-    scprefix: "&8[&2Staff&8] "
+    staffchatprefix: "&8[&2Staff&8] "
+    broadcastprefix: " "
+    
+Message:
+    nopermissions:
+    invalidarguments:
+    clearchat:
+        player:
+        all:
+    chatcooldownseconds:
+    lockchat:
+        locked:
+        alreadylocked:
+        unlocked:
+        alreadyunlocked:
+        currentlylocked:
+    mute:
+        offlineplayer:
+        alreadymuted:
+        mutedsomeone:
+        mutedbysomeone:
+        broadcastmute:
+        alreadyunmuted:
+        unmutedsomeone:
+        unmutedbysomeone:
+        currentlymuted:
+    staffchat:
+        enabled:
+        disabled:
+        

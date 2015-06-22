@@ -47,9 +47,10 @@ public class Mute implements CommandExecutor, Listener {
 				if (!player.hasPermission(Permissions.command_muteplayer)) {
 					player.sendMessage(prefix + ChatColor.RED + "Insufficient permission.");
 					player.sendMessage(prefix + ChatColor.RED + "To find out more, do " + ChatColor.AQUA + "/cmp permissions");
+					
 				}
 				
-				if (player.hasPermission(Permissions.command_muteplayer)) {
+				else if (player.hasPermission(Permissions.command_muteplayer)) {
 					
 						@SuppressWarnings("deprecation")
 						Player target = Bukkit.getServer().getPlayer(args[0]);
