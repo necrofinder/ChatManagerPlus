@@ -85,8 +85,10 @@ public class LockChat implements CommandExecutor, Listener {
 		Player player = (Player) event.getPlayer();
 		
 		if (globalmute == true) {
-			event.setCancelled(true);
-			player.sendMessage(prefix + ChatColor.GOLD + "Chat is currently " + ChatColor.RED + "locked!");
+			if (!event.getPlayer().hasPermission(Permissions.bypass_lockchat)) {
+				event.setCancelled(true);
+				player.sendMessage(prefix + ChatColor.GOLD + "Chat is currently " + ChatColor.RED + "locked!");
+			}
 		}
 	}
 }
