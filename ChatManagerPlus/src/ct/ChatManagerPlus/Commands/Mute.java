@@ -1,6 +1,7 @@
 package ct.ChatManagerPlus.Commands;
 
 import java.io.File;
+import java.security.Permission;
 import java.util.List;
 
 import org.bukkit.Bukkit;
@@ -66,7 +67,7 @@ public class Mute implements CommandExecutor, Listener {
 							if (mutedplayers.contains(uuidtarget)) {
 								player.sendMessage(prefix + ChatColor.AQUA + target.getName() + ChatColor.GOLD + " is already " + ChatColor.RED + "muted!");
 							}
-					
+
 							else if (!mutedplayers.contains(uuidtarget)) {
 								mutedplayers.add(uuidtarget);
 								player.sendMessage(prefix + ChatColor.GOLD + "You have " + ChatColor.RED + "muted " + ChatColor.AQUA + target.getName() + ChatColor.GOLD + ".");
@@ -132,10 +133,14 @@ public class Mute implements CommandExecutor, Listener {
 		if (StaffChat.staffchat.contains(uuid)) {
 			return;
 		}
-		
+
 		else if (mutedplayers.contains(uuid)) {
-			player.sendMessage(prefix + ChatColor.GOLD + "You are currently " + ChatColor.RED + "muted!");
-			event.setCancelled(true);
+			if (event.getPlayer().hasPermission(Permissions.bypass_mute)) {
+				event.setCancelled(false);
+			} else {
+				player.sendMessage(prefix + ChatColor.GOLD + "You are currently " + ChatColor.RED + "muted!");
+				event.setCancelled(true);
+			}
 		}
 	}
 
