@@ -1,7 +1,7 @@
 package ct.ChatManagerPlus.Commands;
-
+ 
 import java.util.ArrayList;
-
+ 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -11,10 +11,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-
+ 
 import ct.ChatManagerPlus.Main;
 import ct.ChatManagerPlus.Permissions;
-
+ 
 public class ChatCooldown implements Listener, CommandExecutor{
 	
 	String prefix = Main.prefix;
@@ -84,10 +84,10 @@ public class ChatCooldown implements Listener, CommandExecutor{
 		Player player = (Player) event.getPlayer();
 		String pname = player.getName();
 		final String name = player.getName();
-
+ 
 		if (chatcd == true) {
 			
-			if (!cooldown.contains(pname)) {
+			if (!cooldown.contains(pname) && !event.getPlayer().hasPermission(Permissions.bypass_cooldown)) {
 				cooldown.add(pname);
 				
 				Bukkit.getScheduler().scheduleAsyncDelayedTask(Main.getPlugin(), new Runnable() {
@@ -96,7 +96,7 @@ public class ChatCooldown implements Listener, CommandExecutor{
 					}
 				}, cds * 20);
 			}
-
+ 
 			else if (cooldown.contains(pname)) {
 				player.sendMessage(prefix + ChatColor.RED + "You are currently on cooldown!");
 				event.setCancelled(true);
