@@ -14,6 +14,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import ct.ChatManagerPlus.Main;
 import ct.ChatManagerPlus.Permissions;
+import org.bukkit.permissions.Permission;
 
 public class ChatCooldown implements Listener, CommandExecutor{
 	
@@ -86,8 +87,9 @@ public class ChatCooldown implements Listener, CommandExecutor{
 		final String name = player.getName();
 
 		if (chatcd == true) {
-			
-			if (!cooldown.contains(pname)) {
+			if (cooldown.contains(player.hasPermission(Permissions.bypass_cooldown))) {
+				cooldown.remove(name);
+			} else if (!cooldown.contains(pname)) {
 				cooldown.add(pname);
 				
 				Bukkit.getScheduler().scheduleAsyncDelayedTask(Main.getPlugin(), new Runnable() {
@@ -95,12 +97,11 @@ public class ChatCooldown implements Listener, CommandExecutor{
 						cooldown.remove(name);
 					}
 				}, cds * 20);
-			}
-
-			else if (cooldown.contains(pname)) {
+			} else if (cooldown.contains(pname)) {
 				player.sendMessage(prefix + ChatColor.RED + "You are currently on cooldown!");
 				event.setCancelled(true);
 			}	
 		}
 	}
 }
+
